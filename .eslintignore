@@ -1,0 +1,13 @@
+**/node_modules/*
+node_modules/**
+**/bower_components/*
+output/*
+mock/**
+dist/**
+dist_gecko/**
+dist_dev/**
+logs/**
+dist_node/**
+**/__test__/**
+eslint-config/**
+tsconfig/**

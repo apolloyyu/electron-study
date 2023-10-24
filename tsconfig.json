@@ -1,0 +1,22 @@
+{
+    "extends": "./tsconfig/react",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "baseUrl": "./",
+        "paths": {
+          "@/*": [
+            "./src/*"
+          ]
+        },
+        "outDir": "output",
+        "importHelpers": true,
+        "sourceMap": true,
+        "typeRoots": [
+            "src/types",
+            "node_modules/@types/node"
+        ],
+        "ignoreDeprecations": "5.0"
+    },
+    "include": ["./src"]
+}
