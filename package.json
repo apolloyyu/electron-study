@@ -6,9 +6,6 @@
   "scripts": {
     "start": "electron ."
   },
-  "keywords": [],
-  "author": "alun",
-  "license": "ISC",
   "dependencies": {
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
@@ -21,5 +18,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^2.4.1"
-  }
+  },
+  "keywords": [],
+  "author": "alun",
+  "license": "ISC"
 }
