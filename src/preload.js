@@ -18,3 +18,6 @@ contextBridge.exposeInMainWorld('versions', {
     // 除函数之外，我们也可以暴露变量
     ping: () => ipcRenderer.invoke('ping')
 });
+contextBridge.exposeInMainWorld('electronAPI', {
+    setTitle: (title) => ipcRenderer.send('set-title', title)
+});
