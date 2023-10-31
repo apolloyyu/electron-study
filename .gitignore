@@ -4,3 +4,4 @@ node_modules/**
 # tsconfig/**
 out/
 node_modules/
+output/

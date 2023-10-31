@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
         replaceText(`${dependency}-version`, process.versions[dependency]);
     }
 });
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = import('electron');
 
 contextBridge.exposeInMainWorld('versions', {
     node: () => process.versions.node,
