@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('node:path');
 
 const createWindow = () => {
@@ -20,9 +20,18 @@ app.whenReady().then(() => {
         const win = BrowserWindow.fromWebContents(webContents);
         win.setTitle(title);
     });
+    ipcMain.handle('dialog:openFile', handleFileOpen);
     createWindow();
 });
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {app.quit();}
 });
+
+async function handleFileOpen () {
+    const { canceled, filePaths } = await dialog.showOpenDialog({});
+    if (!canceled) {
+        return filePaths[0];
+    }
+}
+  
