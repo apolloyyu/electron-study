@@ -8,7 +8,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = {
     target: 'electron-main',
 
-    mode: 'development',
+    mode: IS_DEV ? 'development' : 'production',
 
     entry: {
         index: './src/main/index.ts'
@@ -49,7 +49,7 @@ module.exports = {
         },
     },
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
-    
+
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
