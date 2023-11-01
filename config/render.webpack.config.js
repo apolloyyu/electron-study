@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { IS_DEV, defines } = require('./define.config');
+const { IS_DEV, PORT, defines } = require('./define.config');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-    target: 'electron-renderer',
+    target: 'electron-renderer', // webpack 能够为多种环境或 target 构建编译 https://www.webpackjs.com/configuration/target/
     mode: IS_DEV ? 'development' : 'production',
     entry: {
         index: './src/render/index.ts',
@@ -12,7 +14,7 @@ module.exports = {
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, '../output/render'),
-        publicPath: './',
+        publicPath: IS_DEV ? '/output/render' : './', // develop环境下使用devServer，所以需要修改publicPath
         clean: true,
     },
     node: {
@@ -36,7 +38,8 @@ module.exports = {
         ],
     },
     devServer: {
-        static: path.resolve(__dirname, '../output/render'),
+        hot: true,
+        port: PORT
     },
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
     optimization: {
@@ -72,6 +75,9 @@ module.exports = {
             chunks: 'index',
             minify: true,
             filename: 'index.html'
+        }),
+        new webpack.DefinePlugin({
+            ...Object.keys(defines).reduce((map, key) => ({ ...map, [key]: JSON.stringify(defines[key]) }), defines),
         }),
         new ESLintPlugin({
             extensions: ['js', 'jsx', 'ts', 'tsx'],

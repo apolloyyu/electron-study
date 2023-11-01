@@ -13,4 +13,5 @@ fileBtn.addEventListener('click', async () => {
     filePathElement.innerText = filePath;
 });
 
-console.log('test');
+console.log('士大夫胜多负少');
+console.log(process.env.NODE_ENV);

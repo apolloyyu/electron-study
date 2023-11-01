@@ -1,5 +1,4 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
-import path from 'node:path';
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -10,7 +9,11 @@ const createWindow = () => {
         }
     });
 
-    win.loadFile('../render/index.html');
+    if (process.env.NODE_ENV === 'production') {
+        win.loadFile('../render/index.html');
+    } else {
+        win.loadURL('http://localhost:8288/output/render/index.html');
+    }
 };
 
 app.whenReady().then(() => {
