@@ -8,10 +8,13 @@ setButton.addEventListener('click', () => {
 const fileBtn = document.getElementById('btn-file')!;
 const filePathElement = document.getElementById('filePath')!;
 
+let count = 0;
 fileBtn.addEventListener('click', async () => {
     const filePath = await (window as any).electronAPI.openFile();
-    filePathElement.innerText = filePath;
+    filePathElement.innerText = 'filePath' + count;
+    count++;
 });
-
-console.log('士大夫胜多负少');
-console.log(process.env.NODE_ENV);
+window.onload = () => {
+    console.log('vcxvxcv');
+};
+// console.log(process.env.NODE_ENV);

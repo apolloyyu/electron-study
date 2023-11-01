@@ -18,6 +18,7 @@ module.exports = {
         clean: true,
     },
     node: {
+        global: true,
         __dirname: true,
         __filename: true
     },
@@ -38,34 +39,34 @@ module.exports = {
         ],
     },
     devServer: {
-        hot: true,
+        hot: false,
         port: PORT
     },
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
-    optimization: {
-        runtimeChunk: false,
-        splitChunks: {
-            chunks (chunk) {
-                return chunk.name !== 'light-theme' && chunk.name !== 'dark-theme';
-            },
-            automaticNameDelimiter: '.',
-            cacheGroups: {
-                react: {
-                    test: /[\\/]node_modules[\\/](react|react-dom|antd|styled-components)[\\/]/,
-                    priority: 10
-                },
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
-                }
-            }
-        }
-    },
+    // optimization: {
+    //     runtimeChunk: false,
+    //     splitChunks: {
+    //         chunks (chunk) {
+    //             return chunk.name !== 'light-theme' && chunk.name !== 'dark-theme';
+    //         },
+    //         automaticNameDelimiter: '.',
+    //         cacheGroups: {
+    //             react: {
+    //                 test: /[\\/]node_modules[\\/](react|react-dom|antd|styled-components)[\\/]/,
+    //                 priority: 10
+    //             },
+    //             vendors: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 priority: -10
+    //             },
+    //             default: {
+    //                 minChunks: 2,
+    //                 priority: -20,
+    //                 reuseExistingChunk: true
+    //             }
+    //         }
+    //     }
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             // title: 'Development',
@@ -82,5 +83,8 @@ module.exports = {
         new ESLintPlugin({
             extensions: ['js', 'jsx', 'ts', 'tsx'],
         }),
+        new webpack.ProvidePlugin({
+            global: 'window',
+        })
     ],
 };

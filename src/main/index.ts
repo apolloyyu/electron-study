@@ -6,6 +6,10 @@ const createWindow = () => {
         height: 600,
         webPreferences: {
             // preload: path.join(__dirname, 'preload.js')
+            // https://github.com/electron/forge/issues/2567 
+            // Starting from Electron v12.0.0, the default value of contextIsolation changed from false to true, which prevents use of require in the renderer even if nodeIntegration is enabled
+            contextIsolation: false,
+            nodeIntegration: true,
         }
     });
 
