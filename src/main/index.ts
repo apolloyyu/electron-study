@@ -36,3 +36,4 @@ async function handleFileOpen () {
         return null;
     }
 }
+console.log('test');

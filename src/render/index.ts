@@ -12,3 +12,5 @@ fileBtn.addEventListener('click', async () => {
     const filePath = await (window as any).electronAPI.openFile();
     filePathElement.innerText = filePath;
 });
+
+console.log('test');

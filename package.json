@@ -6,8 +6,8 @@
   "scripts": {
     "start": "electron .",
     "dev-main": "cross-env NODE_ENV=development webpack --watch --config ./config/main.webpack.config.js",
-    "dev-render": "cross-env NODE_ENV=development webpack --config ./config/render.webpack.config.js",
-    "dev": "concurrently -n renderer,main \"npm run dev-main\" \"npm run dev-render\""
+    "dev-render": "cross-env NODE_ENV=development webpack --watch --config ./config/render.webpack.config.js",
+    "dev": "concurrently -n main,renderer \"npm run dev-main\" \"npm run dev-render\""
   },
   "dependencies": {
     "tslib": "^2.6.2",
