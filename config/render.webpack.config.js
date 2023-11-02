@@ -43,30 +43,30 @@ module.exports = {
         port: PORT
     },
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
-    // optimization: {
-    //     runtimeChunk: false,
-    //     splitChunks: {
-    //         chunks (chunk) {
-    //             return chunk.name !== 'light-theme' && chunk.name !== 'dark-theme';
-    //         },
-    //         automaticNameDelimiter: '.',
-    //         cacheGroups: {
-    //             react: {
-    //                 test: /[\\/]node_modules[\\/](react|react-dom|antd|styled-components)[\\/]/,
-    //                 priority: 10
-    //             },
-    //             vendors: {
-    //                 test: /[\\/]node_modules[\\/]/,
-    //                 priority: -10
-    //             },
-    //             default: {
-    //                 minChunks: 2,
-    //                 priority: -20,
-    //                 reuseExistingChunk: true
-    //             }
-    //         }
-    //     }
-    // },
+    optimization: {
+        runtimeChunk: false,
+        splitChunks: {
+            chunks (chunk) {
+                return chunk.name !== 'light-theme' && chunk.name !== 'dark-theme';
+            },
+            automaticNameDelimiter: '.',
+            cacheGroups: {
+                react: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|antd|styled-components)[\\/]/,
+                    priority: 10
+                },
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({
             // title: 'Development',
