@@ -27,6 +27,7 @@ module.exports = {
                 'in': { 'before': true },
                 'instanceof': { 'before': true },
                 'of': { 'before': true },
+                'this': { 'before': true },
             }
         }],
         'key-spacing': ['error', { 'beforeColon': false, 'afterColon': true }],
@@ -60,6 +61,11 @@ module.exports = {
                 'format': ['camelCase'],
                 'leadingUnderscore': 'allowSingleOrDouble',
                 'trailingUnderscore': 'allowSingleOrDouble',
+            },
+            {
+                'selector': 'import',
+                'format': ['camelCase', 'PascalCase'],
+                'leadingUnderscore': 'allow'
             },
             {
                 'selector': 'typeLike',

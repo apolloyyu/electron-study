@@ -9,7 +9,7 @@ module.exports = {
     target: 'electron-renderer', // webpack 能够为多种环境或 target 构建编译 https://www.webpackjs.com/configuration/target/
     mode: IS_DEV ? 'development' : 'production',
     entry: {
-        index: './src/render/index.ts',
+        index: './src/render/index.tsx',
     },
     output: {
         filename: '[name].[contenthash].js',

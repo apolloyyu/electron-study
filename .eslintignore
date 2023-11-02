@@ -11,3 +11,4 @@ dist_node/**
 **/__test__/**
 eslint-config/**
 tsconfig/**
+*.js
