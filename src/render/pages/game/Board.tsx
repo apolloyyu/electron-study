@@ -49,9 +49,9 @@ export const Board: React.FC = props => {
             )
             || (
                 // 横着组成一条
-                newState[Math.floor(index / 3)] === label 
-                    && newState[Math.floor(index / 3) + 1] === label
-                    && newState[Math.floor(index / 3) + 2] === label
+                newState[Math.floor(index / 3) * 3] === label 
+                    && newState[Math.floor(index / 3) * 3 + 1] === label
+                    && newState[Math.floor(index / 3) * 3 + 2] === label
             )
             || (
                 // ↙斜着组成一条

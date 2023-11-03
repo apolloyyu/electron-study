@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Main",
+        "name": "Debug Main Process",
         "type": "node",
         "request": "launch",
         "cwd": "${workspaceFolder}",
@@ -11,8 +11,6 @@
           "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
         },
         "args": [".", "--trace-warnings"],
-        "outputCapture": "std",
-        "console": "integratedTerminal",
         "program": "${workspaceFolder}/src/main/index.ts",
         "sourceMaps": true,
         "outFiles": ["${workspaceFolder}/output/main/index.js"]
