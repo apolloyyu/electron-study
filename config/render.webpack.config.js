@@ -17,13 +17,11 @@ module.exports = {
         publicPath: IS_DEV ? '/output/render' : './', // develop环境下使用devServer，所以需要修改publicPath
         clean: true,
     },
-    node: {
-        global: true,
-        __dirname: true,
-        __filename: true
-    },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.jsx', '.tsx', '.ts', '.js'],
+        alias: {
+            '@': path.join(__dirname, '../src'),
+        },
     },
     module: {
         rules: [
@@ -79,12 +77,6 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             ...Object.keys(defines).reduce((map, key) => ({ ...map, [key]: JSON.stringify(defines[key]) }), defines),
-        }),
-        new ESLintPlugin({
-            extensions: ['js', 'jsx', 'ts', 'tsx'],
-        }),
-        new webpack.ProvidePlugin({
-            global: 'window',
         })
     ],
 };
