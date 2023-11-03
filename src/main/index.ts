@@ -18,7 +18,7 @@ const createWindow = () => {
 
     if (IS_DEV) {
         win.loadURL('http://localhost:8288/output/render/index.html');
-        // win.webContents.openDevTools();
+        win.webContents.openDevTools();
     } else {
         win.loadFile('../render/index.html');
     }
