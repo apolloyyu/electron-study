@@ -1,5 +1,6 @@
 import { IS_DEV } from '@/config';
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { installExtensions } from './services/utils';
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -18,19 +19,26 @@ const createWindow = () => {
 
     if (IS_DEV) {
         win.loadURL('http://localhost:8288/output/render/index.html');
-        win.webContents.openDevTools();
+        win.webContents.once('dom-ready', () => {
+            // Open DevTools, see https://github.com/electron/electron/issues/12438 for why we wait for dom-ready
+            win.webContents.openDevTools({ mode: 'detach' });
+        });
     } else {
         win.loadFile('../render/index.html');
     }
 };
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
     ipcMain.handle('ping', () => 'pong');
     ipcMain.on('set-title', (event, title) => {
         const webContents = event.sender;
         const win = BrowserWindow.fromWebContents(webContents);
         win?.setTitle(title);
     });
+    
+    if (IS_DEV) {
+        await installExtensions();
+    }
 
     createWindow();
 });
@@ -38,12 +46,3 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {app.quit();}
 });
-
-async function handleFileOpen () {
-    const { canceled, filePaths } = await dialog.showOpenDialog({});
-    if (!canceled) {
-        return filePaths[0];
-    } else {
-        return null;
-    }
-}
