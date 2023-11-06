@@ -31,7 +31,7 @@ app.whenReady().then(() => {
         const win = BrowserWindow.fromWebContents(webContents);
         win?.setTitle(title);
     });
-    ipcMain.handle('dialog:openFile', handleFileOpen);
+
     createWindow();
 });
 
@@ -47,4 +47,3 @@ async function handleFileOpen () {
         return null;
     }
 }
-console.log('test');
