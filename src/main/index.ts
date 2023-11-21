@@ -28,6 +28,7 @@ const createWindow = () => {
     }
 };
 
+// eslint-disable-next-line @typescript-eslint/require-await
 app.whenReady().then(async () => {
     ipcMain.handle('ping', () => 'pong');
     ipcMain.on('set-title', (event, title) => {
@@ -37,7 +38,7 @@ app.whenReady().then(async () => {
     });
     
     if (IS_DEV) {
-        await installExtensions();
+        // await installExtensions();
     }
 
     createWindow();
